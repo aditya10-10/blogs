@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./components/Header";
+// import Content from "./components/Content";
+import Blogs from "./components/Blogs";
+import { useContext, useEffect } from "react";
+import { AppContext } from "./context/AppContext";
+import Pagination from "./components/Pagination";
 
 function App() {
+  const { fetchData } = useContext(AppContext);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="w-full h-full flex flex-col items-center justify-center gap-x-1">
+      <Header />
+      <Blogs />
+      <Pagination />
     </div>
   );
 }
